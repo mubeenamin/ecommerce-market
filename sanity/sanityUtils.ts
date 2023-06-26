@@ -20,7 +20,35 @@ export async function getProducts(): Promise<Product[]> {
   return res;
 }
 export async function getMobile(): Promise<Product[]> {
-  const res = await client.fetch(groq`*[_type=="products" && "category"=="Mobile Phones"]{
+  const res = await client.fetch(groq`*[_type=="products" && category->categoryName=="Mobiles Phones"]{
+        _id,
+        _createAt,
+        name,
+        price,
+        "slug": slug.current,
+        "category": category->categoryName,
+        "currencySymbol": currency->symbol,
+        "images": images->productImages[].asset->url
+               
+  }`);
+  return res;
+}
+export async function getLaptop(): Promise<Product[]> {
+  const res = await client.fetch(groq`*[_type=="products" && category->categoryName=="Laptop & Tablets"]{
+        _id,
+        _createAt,
+        name,
+        price,
+        "slug": slug.current,
+        "category": category->categoryName,
+        "currencySymbol": currency->symbol,
+        "images": images->productImages[].asset->url
+               
+  }`);
+  return res;
+}
+export async function getAccessories(): Promise<Product[]> {
+  const res = await client.fetch(groq`*[_type=="products" && category->categoryName=="Accessories"]{
         _id,
         _createAt,
         name,
@@ -66,3 +94,20 @@ export async function getCategory(): Promise<Category[]> {
   }`);
   return res;
 }
+export async function getProduct(slug: string): Promise<Product[]> {
+  const res = await client.fetch(groq`*[_type=="products" && slug.current == $slug][0]{
+        _id,
+        _createAt,
+        name,
+        price,
+        "slug": slug.current,
+        "category": category->categoryName,
+        "currencySymbol": currency->symbol,
+        "images": images->productImages[].asset->url
+               
+  }`, { slug });
+  return res;
+}
+
+
+
