@@ -1,7 +1,8 @@
 import { getMobile } from "../../../../sanity/sanityUtils"
-import { Button } from "../ui/button";
+
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
+import { Button } from "../components/ui/button";
 
 export default async function Mobile() {
     const mobile = await getMobile();

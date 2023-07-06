@@ -8,7 +8,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "../ui/navigation-menu";
+} from "./ui/navigation-menu";
 import logonew from "../../../../public/logonew.png";
 
 import { getCategory } from "../../../../sanity/sanityUtils";
@@ -21,7 +21,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+} from "./ui/dropdown-menu";
 import { MenuIcon } from "lucide-react";
 
 export default async function NavBar() {

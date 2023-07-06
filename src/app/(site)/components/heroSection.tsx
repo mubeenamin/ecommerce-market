@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
-import { Button } from "../ui/button";
+
 import { getHeroSection } from "../../../../sanity/sanityUtils";
+import { Button } from "./ui/button";
 
 export default async function HeroSection() {
   const hero = await getHeroSection();

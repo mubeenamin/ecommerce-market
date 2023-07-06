@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { getLaptop } from "../../../../sanity/sanityUtils";
-import { Button } from "../ui/button";
+
 import { ShoppingCart } from "lucide-react";
+import { Button } from "../components/ui/button";
 
 
 
