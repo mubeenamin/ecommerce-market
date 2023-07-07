@@ -23,15 +23,17 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { MenuIcon } from "lucide-react";
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "./ui/sheet";
+import { Button } from "./ui/button";
 
 export default async function NavBar() {
   const data = await getCategory();
-  
+
   return (
     <main className="py-2 sticky top-0 bg-inherit z-10 flex justify-between">
       <div className="cursor-pointer">
         <Link href={"/"}>
-        <Image src={logonew} alt="logo" />
+          <Image src={logonew} alt="logo" />
         </Link>
       </div>
       <div className="hidden md:block">
@@ -50,26 +52,24 @@ export default async function NavBar() {
         </NavigationMenu>
       </div>
       <div className="block md:hidden">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-           <div className="flex items-center p-2 rounded-full"><MenuIcon/></div>            
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56 h-56 mt-2">
-            {data.map((idata) => (
-              <div key={idata._id}>
-                <DropdownMenuLabel></DropdownMenuLabel>
-                <DropdownMenuGroup>
-                  <DropdownMenuItem>
+        <Sheet>
+          <SheetTrigger asChild><Button variant="outline"><MenuIcon /></Button></SheetTrigger>
+          <SheetContent>
+            <ul className="space-y-8">
+              {
+                data.map((idata) => (
+                  <div key={idata._id}>
                     <Link href={idata.link}>
-                    <span>{idata.categoryName}</span>
+                      <SheetClose asChild>
+                        <li>{idata.categoryName}</li>
+                      </SheetClose>
                     </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-              </div>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
-       
+                  </div>
+                ))
+              }</ul>
+          </SheetContent>
+        </Sheet>
+
       </div>
     </main>
   );
