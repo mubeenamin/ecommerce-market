@@ -1,6 +1,5 @@
 
 import { createClient } from '@sanity/client';
-import { apiVersion, dataset, projectId, useCdn } from '../env';
 
 
 

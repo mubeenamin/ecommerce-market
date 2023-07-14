@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { getProducts } from "../../../../sanity/sanityUtils";
+import { getProducts } from "../../../../../sanity/sanityUtils";
 
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
-import { Button } from "../components/ui/button";
+import { Button } from "../../components/ui/button";
 
 export default async function Products() {
   const product = await getProducts();

@@ -1,6 +1,6 @@
 export type Product = {
   _id: string;
-  createdAt: Date;
+  createdAt?: Date;
   name: string;
   slug: string;
   category:string;
