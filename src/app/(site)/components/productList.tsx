@@ -10,18 +10,18 @@ import { ShoppingCart } from 'lucide-react'
 import { Button } from './ui/button'
 
 
-interface Props{
-    data:Product[]
+interface Props {
+    data: Product[]
 }
-function ProductList({data}:Props) {
-const dispatch = useDispatch();
-  return (
-     <main className="grid grid-cols-1 md:grid md:grid-cols-3 lg:grid lg:grid-cols-4 gap-4 mt-8">
+function ProductList({ data }: Props) {
+    const dispatch = useDispatch();
+    return (
+        <main className="grid grid-cols-1 md:grid md:grid-cols-3 lg:grid lg:grid-cols-4 gap-4 mt-8">
 
             {data.map((iProduct) => (
                 <div key={iProduct._id} className="space-y-2 shadow-lg py-4">
                     <Link href={`../product/${iProduct.slug}`}>
-                        <div className=" w-64 h-64">
+                        <div className=" w-64 h-64 mx-auto">
                             <Image
                                 src={iProduct.images[0]}
                                 height={250}
@@ -39,15 +39,15 @@ const dispatch = useDispatch();
                         </div>
                     </Link>
                     <div className="flex justify-center mx-auto">
-                    <Button onClick={()=>dispatch(addCart(iProduct))} className="w-40 gap-2" >
-                        <ShoppingCart /> Add to cart{" "}
-                    </Button>
-                </div>
+                        <Button onClick={() => dispatch(addCart({product:iProduct,quantity:1}))} className="w-40 gap-2" >
+                            <ShoppingCart /> Add to cart{" "}
+                        </Button>
+                    </div>
                 </div>
             ))}
 
         </main>
-  )
+    )
 }
 
 export default ProductList
