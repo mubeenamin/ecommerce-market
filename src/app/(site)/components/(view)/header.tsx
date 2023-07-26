@@ -2,21 +2,16 @@
 import Link from "next/link";
 import {
   navigationMenuTriggerStyle,
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "./ui/navigation-menu";
-import logonew from "../../../../public/logonew.png";
+  
+} from "../ui/navigation-menu";
+import logonew from "../../../../../public/logonew.png";
 import Image from "next/image";
 
 import { MenuIcon, ShoppingCart } from "lucide-react";
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from "./ui/sheet";
-import { Button } from "./ui/button";
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "../ui/sheet";
+import { Button } from "../ui/button";
 
-import { useAppSelector } from "../store/hooks";
+import { useAppSelector } from "../../store/hooks";
 import { Category } from "types/Category";
 
 

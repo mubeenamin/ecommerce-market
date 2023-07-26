@@ -1,14 +1,14 @@
 "use client"
 
-import { Delete, DeleteIcon, Minus, Plus, ShoppingBagIcon, Trash2 } from "lucide-react"
+import {  Minus, Plus, ShoppingBagIcon, Trash2 } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { useAppDispatch, useAppSelector } from "../store/hooks"
-import cart, { decrement, deleteCart, increment } from "../store/slice/cart"
+import  { decrement, deleteCart, increment } from "../store/slice/cart"
 import Image from "next/image"
 import { Separator } from "../components/ui/separator"
 
 
-// onClick={() => dispatch(deleteCart(items._id))}
+
 
 
 function Cart() {

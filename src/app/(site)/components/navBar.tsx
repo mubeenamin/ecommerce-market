@@ -1,7 +1,7 @@
 
 
 import { getCategory } from "../../../../sanity/sanityUtils";
-import Header from "./header";
+import Header from "./(view)/header";
 
 export default async function NavBar() {
   

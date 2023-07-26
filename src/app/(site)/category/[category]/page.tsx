@@ -1,6 +1,6 @@
 
 import { getCategories } from "../../../../../sanity/sanityUtils";
-import ProductList from "../../components/productList";
+import ProductList from "../../components/(view)/productList";
 
 
 

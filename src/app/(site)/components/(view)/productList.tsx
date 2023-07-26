@@ -5,9 +5,9 @@ import { Product } from 'types/Product'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useDispatch } from 'react-redux'
-import { addCart } from '../store/slice/cart'
+import { addCart } from '../../store/slice/cart'
 import { ShoppingCart } from 'lucide-react'
-import { Button } from './ui/button'
+import { Button } from '../ui/button'
 
 
 interface Props {
