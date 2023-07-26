@@ -1,6 +1,6 @@
 
 import { getBanners } from "../../../../sanity/sanityUtils";
-import BannersView from "./(view)/banners";
+import BannersView from "./view/banners";
 
 
 export default async function Banner() {

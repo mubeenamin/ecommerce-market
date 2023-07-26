@@ -1,6 +1,6 @@
 
 
-import HeroSectionView from "./(view)/heroSection";
+import HeroSectionView from "./view/heroSection";
 
 import { getHeroSection } from "../../../../sanity/sanityUtils";
 
