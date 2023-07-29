@@ -89,7 +89,6 @@ function Header({ navBarItem }: Props) {
             </ul>
           </SheetContent>
         </Sheet>
-
       </div>
     </main>
   )

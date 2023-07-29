@@ -1,6 +1,7 @@
+"use client"
 import { FacebookIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
 import Image from "next/image";
-
+import {motion} from 'framer-motion'
 export default function Footer() {
   const footer1 = [
     {
@@ -62,9 +63,13 @@ export default function Footer() {
             of high quality everyday essentials made.
           </p>
           <div className="flex gap-x-7">
-            <div className="p-4 border border-gray-400 rounded-xl">
+            <motion.div className="p-4 border border-gray-400 rounded-xl"
+            style={{ backgroundColor: "#ffff" }}
+            whileHover={{ backgroundColor: "#4267B2" }}
+            transition={{ duration: 0.5 }}
+            >
               <FacebookIcon />
-            </div>
+            </motion.div>
             <div className="p-4 border border-gray-400 rounded-xl">
               <LinkedinIcon />
             </div>

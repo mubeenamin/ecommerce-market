@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 import { addCart } from '../../store/slice/cart'
 import { ShoppingCart } from 'lucide-react'
 import { Button } from '../ui/button'
-
+import { motion } from "framer-motion"
 
 interface Props {
     data: Product[]
@@ -18,8 +18,13 @@ function ProductList({ data }: Props) {
     return (
         <main className="grid grid-cols-1 md:grid md:grid-cols-3 lg:grid lg:grid-cols-4 gap-4 mt-8">
 
-            {data.map((iProduct) => (
-                <div key={iProduct._id} className="space-y-2 shadow-lg py-4">
+            {data.map((iProduct, index) => (
+                <motion.div key={iProduct._id} className="space-y-2 shadow-lg py-4"
+                    custom={index}
+                    initial={{ x: 1000, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 1.5, delay: index * 0.5 }}
+                >
                     <Link href={`../product/${iProduct.slug}`}>
                         <div className=" w-64 h-64 mx-auto">
                             <Image
@@ -39,11 +44,11 @@ function ProductList({ data }: Props) {
                         </div>
                     </Link>
                     <div className="flex justify-center mx-auto">
-                        <Button onClick={() => dispatch(addCart({product:iProduct,quantity:1}))} className="w-40 gap-2" >
+                        <Button onClick={() => dispatch(addCart({ product: iProduct, quantity: 1 }))} className="w-40 gap-2" >
                             <ShoppingCart /> Add to cart{" "}
                         </Button>
                     </div>
-                </div>
+                </motion.div>
             ))}
 
         </main>

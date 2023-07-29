@@ -1,12 +1,12 @@
 "use client"
 
-import {  Minus, Plus, ShoppingBagIcon, Trash2 } from "lucide-react"
+import { Minus, Plus, ShoppingBagIcon, Trash2 } from "lucide-react"
 import { Button } from "../components/ui/button"
 import { useAppDispatch, useAppSelector } from "../store/hooks"
-import  { decrement, deleteCart, increment } from "../store/slice/cart"
+import { decrement, deleteCart, increment } from "../store/slice/cart"
 import Image from "next/image"
 import { Separator } from "../components/ui/separator"
-
+import { motion } from 'framer-motion'
 
 
 
@@ -14,7 +14,6 @@ import { Separator } from "../components/ui/separator"
 function Cart() {
     const cartList = useAppSelector((state) => state.cartArray)
     const dispatch = useAppDispatch();
-
     return (
         <div className="max-w-6xl mx-auto mt-8 " >
             {
@@ -28,30 +27,35 @@ function Cart() {
                         <div className="md:flex">
                             <div className="md:basis-[70%]">
                                 {
-                                    cartList.cartItems.map((items) => (
-                                        <div key={items._id} >
+                                    cartList.cartItems.map((items, index) => (
+                                        <motion.div key={items._id}
+                                            custom={index}
+                                            initial={{ y: 1000, opacity: 0 }}
+                                            animate={{ y: 0, opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ duration: 1.5, delay: index * 1 }}
+                                            className="overflow-hidden">
                                             <div className="grid grid-cols-3 md:grid md:grid-cols-5 items-center">
                                                 <div className="shadow-md mx-auto row-span-2 md:row-span-1"><Image src={items.images[0]} height={80} width={80} alt={items.name} /></div>
                                                 <div className="md:text-xl">{items.name}</div>
                                                 <div className="md:text-xl ml-6">{items.currencySymbol} {items.price}</div>
                                                 <div className="text-center flex items-center gap-2 text-lg">
-                                                <Button variant={"ghost"} size="icon" className="" onClick={()=>dispatch(decrement({product:items,quantity:1}))}>
-                                                    <Minus />
-                                                </Button>
-                                                <div className="w-10">
-                                                    {items.quantity}
+                                                    <Button variant={"ghost"} size="icon" className="" onClick={() => dispatch(decrement({ product: items, quantity: 1 }))}>
+                                                        <Minus />
+                                                    </Button>
+                                                    <div className="w-10">
+                                                        {items.quantity}
+                                                    </div>
+                                                    <Button variant={"ghost"} size="icon" className="" onClick={() => dispatch(increment({ product: items, quantity: 1 }))}>
+                                                        <Plus />
+                                                    </Button>
                                                 </div>
-                                                <Button variant={"ghost"} size="icon" className="" onClick={()=>dispatch(increment({product:items,quantity:1}))}>
-                                                    <Plus />
-                                                </Button>
-                                                </div>
-                                                <Button variant={"ghost"} size="icon" className="mx-auto" onClick={()=>dispatch(deleteCart({product:items, quantity:items.quantity}))}>
+                                                <Button variant={"ghost"} size="icon" className="mx-auto" onClick={() => dispatch(deleteCart({ product: items, quantity: items.quantity }))}>
                                                     <Trash2 />
                                                 </Button>
                                             </div>
                                             <Separator />
-                                        </div>
-
+                                        </motion.div>
                                     )
                                     )
                                 }
