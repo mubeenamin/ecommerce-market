@@ -7,17 +7,34 @@ import { decrement, deleteCart, increment } from "../store/slice/cart"
 import Image from "next/image"
 import { Separator } from "../components/ui/separator"
 import { motion } from 'framer-motion'
+import { cartProduct } from "types/cart"
+import getStripePromise from "../lib/stripe"
 
 
 
 
 function Cart() {
-    const cartList = useAppSelector((state) => state.cartArray)
+    const cartList = useAppSelector((state) => state.cartArray.cartItems)
+    const cartList2 = useAppSelector((state) => state.cartArray)
     const dispatch = useAppDispatch();
+
+    const handleCheckOut = async () => {
+        const stripe = await getStripePromise();
+        const response = await fetch("api/stripe-session/", {
+            method: "Post",
+            headers: { "Content-Type": "application/json" },
+            cache: "no-cache",
+            body: JSON.stringify(cartList),
+        })
+        const data = await response.json();
+        if (data.session) {
+            stripe?.redirectToCheckout({ sessionId: data.session.id })
+        }
+    }
     return (
         <div className="max-w-6xl mx-auto mt-8 " >
             {
-                cartList.cartItems.length == 0 ? (
+                cartList.length == 0 ? (
                     <div className="flex flex-col md:flex justify-center items-center mx-auto">
                         <div><ShoppingBagIcon className="w-48 h-48 stroke-slate-300" /></div>
                         <div className="text-6xl text-slate-300">Cart is Empty</div>
@@ -27,7 +44,7 @@ function Cart() {
                         <div className="md:flex">
                             <div className="md:basis-[70%]">
                                 {
-                                    cartList.cartItems.map((items, index) => (
+                                    cartList.map((items, index) => (
                                         <motion.div key={items._id}
                                             custom={index}
                                             initial={{ y: 1000, opacity: 0 }}
@@ -65,11 +82,11 @@ function Cart() {
                                 <div className="text-2xl flex justify-between">
                                     <h1>Total</h1>
                                     <div>
-                                        Rs: {cartList.totalAmount}
+                                        Rs: {cartList2.totalAmount}
                                     </div>
                                 </div>
                                 <div className="mx-auto">
-                                    <Button variant={"outline"} className=" w-32 text-sm rounded-lg  border-2 hover:bg-purple-400 hover:text-white md:font-bold transition duration-700 ease-in-out hover:translate-y-1 hover:scale-110">
+                                    <Button onClick={handleCheckOut} variant={"outline"} className=" w-32 text-sm rounded-lg  border-2 hover:bg-purple-400 hover:text-white md:font-bold transition duration-700 ease-in-out hover:translate-y-1 hover:scale-110">
                                         Check out
                                     </Button>
                                 </div>
