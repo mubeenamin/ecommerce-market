@@ -10,9 +10,6 @@ import { motion } from 'framer-motion'
 import { cartProduct } from "types/cart"
 import getStripePromise from "../lib/stripe"
 
-
-
-
 function Cart() {
     const cartList = useAppSelector((state) => state.cartArray.cartItems)
     const cartList2 = useAppSelector((state) => state.cartArray)
