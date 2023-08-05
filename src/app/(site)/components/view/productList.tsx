@@ -9,12 +9,18 @@ import { addCart } from '../../store/slice/cart'
 import { ShoppingCart } from 'lucide-react'
 import { Button } from '../ui/button'
 import { motion } from "framer-motion"
+import toast from "react-hot-toast"
 
 interface Props {
     data: Product[]
 }
 function ProductList({ data }: Props) {
     const dispatch = useDispatch();
+    
+    const handleAddProduct = (productAdd: Product, qty: number) => {
+        dispatch(addCart({ product: productAdd, quantity: qty }))
+        toast.success("Product Added to cart")
+    }
     return (
         <main className="grid grid-cols-1 md:grid md:grid-cols-3 lg:grid lg:grid-cols-4 gap-4 mt-8">
 
@@ -44,9 +50,10 @@ function ProductList({ data }: Props) {
                         </div>
                     </Link>
                     <div className="flex justify-center mx-auto">
-                        <Button onClick={() => dispatch(addCart({ product: iProduct, quantity: 1 }))} className="w-40 gap-2" >
+                        <Button onClick={() => handleAddProduct(iProduct, 1)} className="w-40 gap-2" >
                             <ShoppingCart /> Add to cart{" "}
                         </Button>
+                        
                     </div>
                 </motion.div>
             ))}

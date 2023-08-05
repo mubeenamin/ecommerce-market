@@ -7,14 +7,18 @@ import { decrement, deleteCart, increment } from "../store/slice/cart"
 import Image from "next/image"
 import { Separator } from "../components/ui/separator"
 import { motion } from 'framer-motion'
-import { cartProduct } from "types/cart"
 import getStripePromise from "../lib/stripe"
+import { cartProduct } from "types/cart"
+import toast from "react-hot-toast"
 
 function Cart() {
     const cartList = useAppSelector((state) => state.cartArray.cartItems)
     const cartList2 = useAppSelector((state) => state.cartArray)
     const dispatch = useAppDispatch();
-
+    const handleDeleteProduct = (cartItems: cartProduct, qty: number) => {
+        dispatch(deleteCart({ product: cartItems, quantity: qty }))
+        toast.success("Product Delete successfully")
+    }
     const handleCheckOut = async () => {
         const stripe = await getStripePromise();
         const response = await fetch("api/stripe-session/", {
@@ -64,7 +68,7 @@ function Cart() {
                                                         <Plus />
                                                     </Button>
                                                 </div>
-                                                <Button variant={"ghost"} size="icon" className="mx-auto" onClick={() => dispatch(deleteCart({ product: items, quantity: items.quantity }))}>
+                                                <Button variant={"ghost"} size="icon" className="mx-auto" onClick={() => handleDeleteProduct(items, items.quantity)}>
                                                     <Trash2 />
                                                 </Button>
                                             </div>

@@ -46,7 +46,7 @@ export default function Footer() {
     },
   ];
   return (
-    <main className="mt-20">
+    <main className="mt-20 mx-4 md:mx-0">
       <div className="md:grid md:grid-cols-5 mx-auto py-20">
         <div className="mr-12 col-span-2">
           <div className="w-full">

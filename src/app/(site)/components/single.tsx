@@ -1,19 +1,25 @@
+"use client"
+
 import Image from 'next/image'
 import React from 'react'
 import { Product } from 'types/Product'
 import { Button } from './ui/button'
 import { ShoppingCart } from 'lucide-react'
-
-
-
-
-
+import { useDispatch } from 'react-redux'
+import { addCart } from '../store/slice/cart'
+import toast from 'react-hot-toast'
 
 interface Props {
     data: Product
 }
 
 function Single({ data }: Props) {
+    const dispatch = useDispatch();
+    
+    const handleAddProduct = (productAdd: Product, qty: number) => {
+        dispatch(addCart({ product: productAdd, quantity: qty }))
+        toast.success("Product Added to cart")
+    }
     return (
         <div className='mt-28'>
             <div className='md:grid md:grid-cols-5'>
@@ -26,7 +32,7 @@ function Single({ data }: Props) {
                     <div>{data.category}</div>
 
                     <div className='flex mx-auto'>
-                    <Button className="w-40 gap-2 mx-auto" >
+                    <Button onClick={()=>handleAddProduct(data,1)} className="w-40 gap-2 mx-auto" >
                         <ShoppingCart /> Add to cart{" "}
                     </Button>
                     </div>
