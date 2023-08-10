@@ -13,6 +13,7 @@ import { Button } from "../ui/button";
 
 import { useAppSelector } from "../../store/hooks";
 import { Category } from "types/Category";
+import { ModeToggle } from "../toggle";
 
 
 interface Props {
@@ -23,7 +24,7 @@ interface Props {
 function Header({ navBarItem }: Props) {
   const cartItem = useAppSelector((state) => state.cartArray);
   return (
-    <main className="py-2 sticky top-0 bg-inherit z-10 flex justify-between shadow-md">
+    <main className="py-2 sticky top-0 bg-inherit z-10 flex justify-between shadow-md border-b-2">
       <div className="cursor-pointer">
         <Link href={"/"} >
           <Image src={logonew} alt="logo" />
@@ -52,17 +53,19 @@ function Header({ navBarItem }: Props) {
           </div>
         </ul>
       </div>
-      <div>
+      <div className="flex space-x-3 mr-4">
+      <div><ModeToggle/></div>
         <Link href={"../cart"} >
-          <button className="relative p-3 hover:bg-slate-100 hover:rounded-full ">
+          <Button variant={"outline"} size={"icon"} className="rounded-full ">
             <ShoppingCart />
             <span className="absolute top-0 w-5 h-5 bg-red-500 rounded-full text-center text-white text-xs">
               {cartItem.totalQuantity}
             </span>
-          </button>
+          </Button>
         </Link>
-      </div>
 
+      </div>
+      
       <div className="block md:hidden">
         <Sheet>
           <SheetTrigger asChild><Button variant="outline"><MenuIcon /></Button></SheetTrigger>

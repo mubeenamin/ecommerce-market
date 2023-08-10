@@ -13,7 +13,7 @@ const stripe = new Stripe(key, {
 
 export async function POST(request: NextRequest) {
     const body = await request.json();
-    console.log(body)
+    
 
 
     try {

@@ -2,6 +2,10 @@
 import { FacebookIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
 import Image from "next/image";
 import {motion} from 'framer-motion'
+import logonew from "../../../../public/logonew.png";
+
+
+
 export default function Footer() {
   const footer1 = [
     {
@@ -51,7 +55,7 @@ export default function Footer() {
         <div className="mr-12 col-span-2">
           <div className="w-full">
             <Image
-              src={"/logonew.png"}
+              src={logonew}
               width={173}
               height={40}
               alt="logo-Buttom"
@@ -64,7 +68,7 @@ export default function Footer() {
           </p>
           <div className="flex gap-x-7">
             <motion.div className="p-4 border border-gray-400 rounded-xl"
-            style={{ backgroundColor: "#ffff" }}
+            
             whileHover={{ backgroundColor: "#4267B2" }}
             transition={{ duration: 0.5 }}
             >
@@ -103,8 +107,8 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <div className=" border border-t-1 border-x-0 border-black py-6">
-        <div className="grid grid-cols-1 md:grid md:grid-cols-2 md:gap-x-6 lg:grid-cols-3 py-4  lg:max-w-6xl xl:max-w-7xl md:mx-auto">
+      <div className="border-t-2 p-2 ">
+        <div className="md:flex md:justify-between">
           <p className="flex items-end">copyright 2023</p>
           <p className="flex">
             Design by:

@@ -28,6 +28,7 @@ function Cart() {
             body: JSON.stringify(cartList),
         })
         const data = await response.json();
+        console.log(data)
         if (data.session) {
             stripe?.redirectToCheckout({ sessionId: data.session.id })
         }
@@ -78,7 +79,7 @@ function Cart() {
                                     )
                                 }
                             </div>
-                            <div className="flex flex-col mx-auto shadow-xl w-full md:w-80 md:h-60 p-8 gap-y-8 rounded-lg">
+                            <div className="flex flex-col mx-auto shadow-xl w-full md:w-80 md:h-60 p-8 gap-y-8 rounded-lg border">
                                 <h1 className="text-4xl text-center font-bold">Summary</h1>
                                 <div className="text-2xl flex justify-between">
                                     <h1>Total</h1>

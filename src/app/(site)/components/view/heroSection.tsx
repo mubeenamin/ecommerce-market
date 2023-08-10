@@ -12,7 +12,7 @@ interface prop {
 
 function HeroSectionView({ data }: prop) {
     return (
-        <main className="bg-slate-100">
+        <main>
 
             {data.map((hItem) => (
                 <div key={hItem._id}
