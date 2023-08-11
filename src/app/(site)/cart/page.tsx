@@ -55,7 +55,7 @@ function Cart() {
                                             transition={{ duration: 1.5, delay: index * 1 }}
                                             className="overflow-hidden">
                                             <div className="grid grid-cols-3 md:grid md:grid-cols-5 items-center">
-                                                <div className="shadow-md mx-auto row-span-2 md:row-span-1"><Image src={items.images[0]} height={80} width={80} alt={items.name} /></div>
+                                                <div className="shadow-md mx-auto row-span-2 md:row-span-1"><Image src={items.images[0]} height={80} width={80} alt={items.name} className="bg-white" /></div>
                                                 <div className="md:text-xl">{items.name}</div>
                                                 <div className="md:text-xl ml-6">{items.currencySymbol} {items.price}</div>
                                                 <div className="text-center flex items-center gap-2 text-lg">

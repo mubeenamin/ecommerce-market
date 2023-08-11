@@ -16,6 +16,7 @@ import { Category } from "types/Category";
 import { ModeToggle } from "../toggle";
 
 
+
 interface Props {
   navBarItem: Category[]
 }
@@ -55,6 +56,7 @@ function Header({ navBarItem }: Props) {
       </div>
       <div className="flex space-x-3 mr-4">
       <div><ModeToggle/></div>
+      
         <Link href={"../cart"} >
           <Button variant={"outline"} size={"icon"} className="rounded-full ">
             <ShoppingCart />

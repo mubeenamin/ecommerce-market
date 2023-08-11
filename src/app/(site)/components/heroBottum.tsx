@@ -23,7 +23,7 @@ export default function HeroBottum() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 1 }}
-        className="overflow-hidden flex flex-col mx-auto space-y-4 md:space-y-0 md:flex md:flex-row md:justify-between p-8">
+        className="overflow-hidden flex flex-wrap justify-between mx-auto gap-2 md:space-y-0 md:flex md:flex-row md:justify-between p-8">
         <motion.div variants={itemVariants} className="flex gap-x-6 font-bold">
           <div><Truck /></div>
           <div>Free Shipping & Retrun</div>

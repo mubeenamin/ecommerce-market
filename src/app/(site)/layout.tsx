@@ -28,7 +28,7 @@ export default function RootLayout({
         {/* <Nav/> */}
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <NavBar />{children}<Footer />
-        <Toaster position="top-right"/>
+        <Toaster position="bottom-right"/>
         </ThemeProvider>
       </body>
     </html>

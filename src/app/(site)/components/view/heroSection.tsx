@@ -16,7 +16,7 @@ function HeroSectionView({ data }: prop) {
 
             {data.map((hItem) => (
                 <div key={hItem._id}
-
+                
                 >
                     <div className=" rounded-b-lg"
                     >
