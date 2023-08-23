@@ -10,6 +10,7 @@ import * as Yup from "yup";
 import toast from "react-hot-toast";
 import { User } from "types/User";
 import { Input } from "@nextui-org/react";
+
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string().min(6).required("Required"),
@@ -66,13 +67,12 @@ export default function Login() {
             <span className="inline-block text-palette-mute dark:text-palette-base/80 text-[12px] mt-2 bg-palette-fill p-2"></span>
           </p>
           <div className="gap-5">
-            <form onSubmit={formik.handleSubmit} >
+            <form onSubmit={formik.handleSubmit}>
               <Input
                 id="email"
                 name="email"
                 type="email"
                 label={"Email"}
-                
                 labelPlacement="outside"
                 required={true}
                 value={formik.values.email}

@@ -1,6 +1,6 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { API_ROOT } from "../config";
+import { API_ROOT } from "../../../config";
 export const options: NextAuthOptions = {
   session: {
     strategy: "jwt",
