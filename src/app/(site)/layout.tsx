@@ -22,11 +22,11 @@ export default function RootLayout({
 }) {
   return (
     <Providers>
-    <html lang="en">
-      <body className={`${inter.className} xl:max-w-7xl max-w-6xl mx-auto`}>
+    <html lang="en" >
+      <body className={`${inter.className} xl:max-w-7xl max-w-6xl mx-auto px-2`}>
         
         {/* <Nav/> */}
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider>
         <NavBar />{children}<Footer />
         <Toaster position="bottom-right"/>
         </ThemeProvider>

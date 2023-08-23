@@ -15,6 +15,6 @@ export default async function Product({ params }: Prop) {
     const singleItem = await getProduct(slug);
     return (
         <>
-            <Single data={singleItem} />
+            <Single sdata={singleItem} />
         </>)
 }

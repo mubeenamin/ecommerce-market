@@ -8,6 +8,6 @@ export default async function Products() {
   const product = await getProducts();
 
   return (
-    <ProductList data={product} />
+    <ProductList pdata={product} />
   );
 }

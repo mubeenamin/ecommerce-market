@@ -10,20 +10,21 @@ import { ShoppingCart } from "lucide-react";
 import { Button } from "../ui/button";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
+import { useSession } from "next-auth/react";
 
 interface Props {
-  data: Product[];
+  pdata: Product[];
 }
-function ProductList({ data }: Props) {
+function ProductList({ pdata }: Props) {
   const dispatch = useDispatch();
-
+  const { data } = useSession();
   const handleAddProduct = (productAdd: Product, qty: number) => {
     dispatch(addCart({ product: productAdd, quantity: qty }));
     toast.success("Product Added to cart");
   };
   return (
     <main className="grid grid-cols-1 md:grid md:grid-cols-3 lg:grid lg:grid-cols-4 gap-4 mt-8">
-      {data.map((iProduct, index) => (
+      {pdata.map((iProduct, index) => (
         <motion.div
           key={iProduct._id}
           custom={index}
@@ -90,12 +91,21 @@ function ProductList({ data }: Props) {
                 </div>
 
                 <div className="flex justify-between text-sm font-medium mt-5">
-                  <Button
-                    onClick={() => handleAddProduct(iProduct, 1)}
-                    className=" rounded-full"
-                  >
-                    <span>Add Cart</span>
-                  </Button>
+                  {data?.user ? (
+                    <Button
+                      onClick={() => handleAddProduct(iProduct, 1)}
+                      className=" rounded-full"
+                    >
+                      <span>Add Cart</span>
+                    </Button>
+                  ) : (
+                    <Link href={"/login"}>
+                      <Button className=" rounded-full">
+                        <span>Login</span>
+                      </Button>
+                    </Link>
+                  )}
+
                   <Link href={`../product/${iProduct.slug}`}>
                     <button className="transition ease-in duration-300 bg-gray-700 hover:bg-gray-800 border hover:border-gray-500 border-gray-700 hover:text-white  hover:shadow-lg text-gray-400 rounded-full w-9 h-9 text-center p-2">
                       <svg
